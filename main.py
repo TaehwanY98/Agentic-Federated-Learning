@@ -3,10 +3,15 @@ import os
 from langchain.agents import create_agent
 from model.agent.tools import *
 from langchain.agents import AgentState
-
+import flwr as fl
+from flwr.simulation import start_simulation
 import random
 import numpy as np
 import torch
+
+from server.fedavg import AgenticFedAvg
+from server.fedprox import AgenticFedProx
+from client.clientFedAvg import client
 
 def set_seed(seed):
     os.environ['PYTHONHASHSEED'] = str(seed)
@@ -44,3 +49,11 @@ if __name__ == "__main__":
         state_schema=MyState
     )
     set_seed(42)
+
+    start_simulation(
+        client_fn=lambda cid: client(agent=agent),
+        num_clients=10,
+        config=fl.server.ServerConfig(num_rounds=3),
+        strategy=AgenticFedProx(agent=agent, net=None, lossf=None, testloader=None, proximal_mu=0.1, fraction_fit=0.1, fraction_eval=0.1, min_fit_clients=2, min_eval_clients=2, min_available_clients=2, eval_fn=None, on_fit_config_fn=None, on_evaluate_config_fn=None, accept_failures=True, initial_parameters=None),
+    )
+    

@@ -19,7 +19,7 @@ from flwr.server.client_manager import ClientManager
 from flwr.server.client_proxy import ClientProxy
 from model.LLM_decision_agent import AFL_Decision_Agent_Call
 
-class AgenticFedAvg(FedProx):
+class AgenticFedProx(FedProx):
     def __init__(self, agent, net, lossf, proximal_mu: float, testloader, fraction_fit=0.1, fraction_eval=0.1, min_fit_clients=2, min_eval_clients=2, min_available_clients=2, eval_fn=None, on_fit_config_fn=None, on_evaluate_config_fn=None, accept_failures=True, initial_parameters=None):
         super().__init__(fraction_fit=fraction_fit,
                          fraction_eval=fraction_eval,
