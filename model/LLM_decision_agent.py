@@ -14,7 +14,6 @@ class MyState(AgentState):
     call_count: int
 
 def AFL_Decision_Agent_Call(agent, num_samples: str, num_class:str, eval_metrics_scores:str,):
-    agent = create_agent(model="google_genai:gemini-3.6-flash", tools=tools, state_schema=MyState)
     result = agent.invoke({"messages": [{"role": "user", "content": "Calculate heterogeneity and task evaluation score in acting federated learning scenario with next message",
                                          "role": "user", "content": f"Number of samples : {num_samples}, Class Distribution : {num_class}, Evaluation Scores : {eval_metrics_scores}"
                                          }]})

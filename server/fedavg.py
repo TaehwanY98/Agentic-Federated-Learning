@@ -17,10 +17,10 @@ from flwr.server.strategy.aggregate import aggregate, aggregate_inplace
 from flwr.common.logger import log
 from flwr.server.client_manager import ClientManager
 from flwr.server.client_proxy import ClientProxy
-from model.LLM_decision_agent import LLM_Decision_Agent_Call
+from model.LLM_decision_agent import AFL_Decision_Agent_Call
 
-class CustomFedAvg(FedAvg):
-    def __init__(self, net, lossf, testloader, fraction_fit=0.1, fraction_eval=0.1, min_fit_clients=2, min_eval_clients=2, min_available_clients=2, eval_fn=None, on_fit_config_fn=None, on_evaluate_config_fn=None, accept_failures=True, initial_parameters=None):
+class AgenticFedAvg(FedAvg):
+    def __init__(self, agent, net, lossf, testloader, fraction_fit=0.1, fraction_eval=0.1, min_fit_clients=2, min_eval_clients=2, min_available_clients=2, eval_fn=None, on_fit_config_fn=None, on_evaluate_config_fn=None, accept_failures=True, initial_parameters=None):
         super().__init__(fraction_fit=fraction_fit,
                          fraction_eval=fraction_eval,
                          min_fit_clients=min_fit_clients,
@@ -31,6 +31,7 @@ class CustomFedAvg(FedAvg):
                          on_evaluate_config_fn=on_evaluate_config_fn,
                          accept_failures=accept_failures,
                          initial_parameters=initial_parameters)
+        self.agent = agent
         self.net = net
         self.lossf = lossf
         self.testloader = testloader
@@ -46,8 +47,12 @@ class CustomFedAvg(FedAvg):
         # Do not aggregate if there are failures and failures are not accepted
         if not self.accept_failures and failures:
             return None, {}
+        
         loss, metric_scores = self.task_evaluation()
-        LLM_Decision_Agent_Call()
+        num_samples = [fit_res.num_examples for _, fit_res in results]
+        AFL_decision = AFL_Decision_Agent_Call(self.agent, num_samples=str(num_samples), num_class=str(self.testloader.dataset.targets), eval_metrics_scores=f"loss: {loss}, metric_scores: {metric_scores}")
+
+        heterogeneity, evaluation_score, description = AFL_decision.get('heterogeneity'), AFL_decision.get('evaluation_score'), AFL_decision.get('description')
 
         if self.inplace:
             # Does in-place weighted average of results
