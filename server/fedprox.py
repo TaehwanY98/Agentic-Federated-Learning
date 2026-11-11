@@ -17,6 +17,7 @@ from flwr.server.strategy.aggregate import aggregate, aggregate_inplace
 from flwr.common.logger import log
 from flwr.server.client_manager import ClientManager
 from flwr.server.client_proxy import ClientProxy
+from LLM_decision_agent import LLM_Decision_Agent_Call
 
 class CustomFedProx(FedProx):
     def __init__(self, net, lossf, testloader, fraction_fit = 1, fraction_evaluate = 1, min_fit_clients = 2, min_evaluate_clients = 2, min_available_clients = 2, evaluate_fn = None, on_fit_config_fn = None, on_evaluate_config_fn = None, accept_failures = True, initial_parameters = None, fit_metrics_aggregation_fn = None, evaluate_metrics_aggregation_fn = None, proximal_mu=0.1):
@@ -38,7 +39,7 @@ class CustomFedProx(FedProx):
         if not self.accept_failures and failures:
             return None, {}
 
-
+        LLM_Decision_Agent_Call()
 
         if self.inplace:
             # Does in-place weighted average of results

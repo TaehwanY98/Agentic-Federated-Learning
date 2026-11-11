@@ -17,7 +17,7 @@ from flwr.server.strategy.aggregate import aggregate, aggregate_inplace
 from flwr.common.logger import log
 from flwr.server.client_manager import ClientManager
 from flwr.server.client_proxy import ClientProxy
-from LLM_decision_agent import LLM_Decision_Agent_Call
+from model.LLM_decision_agent import LLM_Decision_Agent_Call
 
 class CustomFedAvg(FedAvg):
     def __init__(self, net, lossf, testloader, fraction_fit=0.1, fraction_eval=0.1, min_fit_clients=2, min_eval_clients=2, min_available_clients=2, eval_fn=None, on_fit_config_fn=None, on_evaluate_config_fn=None, accept_failures=True, initial_parameters=None):
@@ -35,7 +35,6 @@ class CustomFedAvg(FedAvg):
         self.lossf = lossf
         self.testloader = testloader
 
-
     def aggregate_fit(self,
             server_round: int,
             results: list[tuple[ClientProxy, FitRes]],
@@ -47,7 +46,7 @@ class CustomFedAvg(FedAvg):
         # Do not aggregate if there are failures and failures are not accepted
         if not self.accept_failures and failures:
             return None, {}
-
+        loss, metric_scores = self.task_evaluation()
         LLM_Decision_Agent_Call()
 
         if self.inplace:
@@ -73,7 +72,6 @@ class CustomFedAvg(FedAvg):
 
         return parameters_aggregated, metrics_aggregated
         
-
     def task_evaluation(self, parameters):
         parameters_ndarrays = parameters_to_ndarrays(parameters)
         self.set_parameters(self.net, parameters_ndarrays)
