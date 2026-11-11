@@ -6,3 +6,5 @@
 !*.py
 !README.md
 !LICENSE
+!tasks_model
+!util
