@@ -11,18 +11,12 @@ from langchain.tools import (
     ToolRuntime,
     tool
     )
-from pydantic import BaseModel
 
 class AgentCallAPI(BaseTool):
     name : str = "call_api"
     description : str = "Call an API with the given parameters."
     parameters : str = f"args : "
     model : str = "google_genai:gemini-3.6-flash"
-
-class AnswerDecision(BaseModel):
-    heterogeneity : float
-    evaluation_score : float
-    description : str
 
 @tool(args_schema=AgentCallAPI)
 def call_api(query:str, model: str, parameters: str):
