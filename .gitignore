@@ -1,2 +1,8 @@
-*.config
-*.json
+*
+!client
+!server
+!res
+!model
+!*.py
+!README.md
+!LICENSE

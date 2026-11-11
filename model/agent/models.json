@@ -1,9 +1,0 @@
-{"models": [
-    "google_genai:gemini-3.6-flash",
-    "openai:gpt-5.5",
-    "anthropic:claude-sonnet-5",
-    "openrouter:z-ai/glm-5.2",
-    "fireworks:accounts/fireworks/models/glm-5p2",
-    "baseten:zai-org/GLM-5.2",
-    "ollama:north-mini-code-1.0"
-]}
