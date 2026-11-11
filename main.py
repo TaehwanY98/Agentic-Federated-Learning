@@ -28,15 +28,6 @@ class MyState(AgentState):
     user_id: str
     call_count: int
 
-def create_agent_versions(config_address: str, selected_agent: int)-> dict:
-    with open(config_address, "r") as f:
-        configs = f.readlines()
-        dictionary = {c.split(":")[0].strip(): c.split(":")[1].strip() for c in configs}
-        with open(dictionary["models"], "r") as f:
-            agent_versions = json.load(f)
-    
-    return agent_versions["models"][selected_agent]
-
 
 if __name__ == "__main__":
     config_address = "api.config"
