@@ -1,15 +1,12 @@
 # Agentic Federated Learning
 - English
-```text
-[Abstraction]
-This paper proposes "Agentic Federated Learning (AFL)," a novel approach that integrates LLM-driven decision-making with tool calling to address the complex challenges inherent in standard Federated Learning (FL). Traditionally, FL faces significant obstacles such as non-IID data distributions, high communication overheads, and non-adaptive aggregation methods, which can compromise model performance and efficiency. Our AFL framework introduces a "Functional Tools" suite within the server, encompassing vital components like an Aggregation Engine, Client Selector, and Parameter Tuner. Crucially, we leverage an LLM-based agent with a "think-and-act" loop to dynamically orchestrate these tools via tool calls, responding in real-time to evolving system states and client metrics. A sophisticated "Prompt Engineering" layer translates system objectives and monitor data into optimal tool selections and configurations. Our comprehensive framework incorporates features such as goal-based optimization (e.g., maximizing accuracy, minimizing latency), a comprehensive knowledge base, and client-side support for tool-call execution, all working in concert to create a highly flexible and powerful AFL system.
-```
+> [!NOTE] 
+> This paper proposes "Agentic Federated Learning (AFL)," a novel approach that integrates LLM-driven decision-making with tool calling to address the complex challenges inherent in standard Federated Learning (FL). Traditionally, FL faces significant obstacles such as non-IID data distributions, high communication overheads, and non-adaptive aggregation methods, which can compromise model performance and efficiency. Our AFL framework introduces a "Functional Tools" suite within the server, encompassing vital components like an Aggregation Engine, Client Selector, and Parameter Tuner. Crucially, we leverage an LLM-based agent with a "think-and-act" loop to dynamically orchestrate these tools via tool calls, responding in real-time to evolving system states and client metrics. A sophisticated "Prompt Engineering" layer translates system objectives and monitor data into optimal tool selections and configurations. Our comprehensive framework incorporates features such as goal-based optimization (e.g., maximizing accuracy, minimizing latency), a comprehensive knowledge base, and client-side support for tool-call execution, all working in concert to create a highly flexible and powerful AFL system.
 
 - Korean
-```text
-[초록]
-본 논문은 표준 연합 학습(Federated Learning, FL)의 복잡한 과제를 해결하기 위해 LLM 기반 의사 결정과 도구 호출(tool calling)을 통합한 혁신적인 접근 방식인 "에이전틱 연합 학습(Agentic Federated Learning, AFL)"을 제안한다. 기존의 연합 학습은 비독립적(non-IID) 데이터 분포, 높은 통신 오버헤드, 비적응형 집계 방식 등 상당한 장애물에 직면하여 모델 성능과 효율성을 저하시킬 수 있었다. 본 논문에서 제안하는 AFL 프레임워크는 집계 엔진, 클라이언트 선택기, 매개변수 조정기와 같은 필수 구성 요소를 포함하는 "기능 도구(Functional Tools)" 세트를 서버 내에 도입한다. 특히, 우리는 실시간으로 진화하는 시스템 상태 및 클라이언트 지표에 대응하기 위해 도구 호출을 통해 이러한 도구를 동적으로 조율하는 "사고 및 행동(think-and-act)" 루프를 갖춘 LLM 기반 에이전트를 활용한다. 정교한 "프롬프트 엔지니어링(Prompt Engineering)" 레이어는 시스템 목표와 모니터링 데이터를 최적의 도구 선택 및 구성으로 변환한다. 우리의 포괄적인 프레임워크는 목표 기반 최적화(예: 정확도 극대화, 지연 시간 최소화), 포괄적인 지식 기반, 도구 호출 실행을 위한 클라이언트 측 지원과 같은 기능을 통합하여 매우 유연하고 강력한 AFL 시스템을 구축한다.
-```
+> [!NOTE]
+>본 논문은 표준 연합 학습(Federated Learning, FL)의 복잡한 과제를 해결하기 위해 LLM 기반 의사 결정과 도구 호출(tool calling)을 통합한 혁신적인 접근 방식인 "에이전틱 연합 학습(Agentic Federated Learning, AFL)"을 제안한다. 기존의 연합 학습은 비독립적(non-IID) 데이터 분포, 높은 통신 오버헤드, 비적응형 집계 방식 등 상당한 장애물에 직면하여 모델 성능과 효율성을 저하시킬 수 있었다. 본 논문에서 제안하는 AFL 프레임워크는 집계 엔진, 클라이언트 선택기, 매개변수 조정기와 같은 필수 구성 요소를 포함하는 "기능 도구(Functional Tools)" 세트를 서버 내에 도입한다. 특히, 우리는 실시간으로 진화하는 시스템 상태 및 클라이언트 지표에 대응하기 위해 도구 호출을 통해 이러한 도구를 동적으로 조율하는 "사고 및 행동(think-and-act)" 루프를 갖춘 LLM 기반 에이전트를 활용한다. 정교한 "프롬프트 엔지니어링(Prompt Engineering)" 레이어는 시스템 목표와 모니터링 데이터를 최적의 도구 선택 및 구성으로 변환한다. 우리의 포괄적인 프레임워크는 목표 기반 최적화(예: 정확도 극대화, 지연 시간 최소화), 포괄적인 지식 기반, 도구 호출 실행을 위한 클라이언트 측 지원과 같은 기능을 통합하여 매우 유연하고 강력한 AFL 시스템을 구축한다.
+
 ![Proposed Algorithm Diagram](./res/diagram/Agentic%20FL%20Initial%20Diagram.png)
 
 
